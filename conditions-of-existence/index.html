@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditions of Existence · A Worldmaking Project atlas</title>
+<meta name="description" content="An interactive atlas of artificial life as worldmaking: the Game of Life, Boids, evolved virtual creatures, Tierra and Daisyworld running live, with the field's contemporary work from ALIEN to xenobots.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Conditions of Existence · A Worldmaking Project atlas">
+<meta property="og:description" content="An interactive atlas of artificial life as worldmaking: the Game of Life, Boids, evolved virtual creatures, Tierra and Daisyworld running live, with the field's contemporary work from ALIEN to xenobots.">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Conditions of Existence · A Worldmaking Project atlas">
+<meta name="twitter:description" content="An interactive atlas of artificial life as worldmaking: the Game of Life, Boids, evolved virtual creatures, Tierra and Daisyworld running live, with the field's contemporary work from ALIEN to xenobots.">
+<meta name="twitter:image" content="og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="author" content="Damjan Jovanovic">
+<meta name="theme-color" content="#E9ECE6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: specimen plates. Each lab is a stained slide on a light table; essay text sits beside it in a reading column. */
+:root{
+  color-scheme: light;
+  --glass:#E9ECE6;   /* light table */
+  --slide:#F8F9F5;   /* slide and panel ground */
+  --ink:#17191F;
+  --muted:#5B636D;
+  --rule:#C9CFC5;
+  --hema:#3D3B8E;    /* hematoxylin */
+  --eosin:#C2306A;   /* eosin */
+  --chloro:#2E8B57;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--glass)}
+body{background:var(--glass);color:var(--ink);font:17px/1.6 var(--body);margin:0}
+a{color:var(--hema);text-underline-offset:2px}
+a:hover{color:var(--eosin)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px 56px}
+.ibar{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--ink);position:sticky;top:0;background:color-mix(in srgb,var(--glass) 94%,transparent);z-index:5;backdrop-filter:blur(6px)}
+.wordmark{font:700 15px/1 var(--display);letter-spacing:.01em;color:var(--ink);text-decoration:none}
+.wordmark small{display:block;font:400 11px/1.4 var(--mono);color:var(--muted);margin-top:4px;letter-spacing:.04em}
+.inav{display:flex;flex-wrap:wrap;gap:4px 16px}
+.inav a{font:400 12px/1.4 var(--mono);color:var(--muted);text-decoration:none}
+.inav a:hover,.inav a:focus-visible{color:var(--eosin)}
+.eyebrow{font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--eosin);margin:0 0 8px}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:center;padding:44px 0 28px}
+.ititle{font:800 clamp(46px,7.6vw,98px)/.92 var(--display);letter-spacing:-.02em;margin:6px 0 0;color:var(--ink);text-wrap:balance}
+.ititle em{font-style:normal;color:var(--hema)}
+.ilede{font-size:clamp(17px,1.5vw,19px);line-height:1.6;max-width:62ch;margin:0}
+.ilede+.ilede{margin-top:14px}
+.heroplate{margin:0}
+.heroplate canvas{width:100%;height:auto;display:block;border-radius:50%;background:var(--slide);box-shadow:0 0 0 1px var(--rule),0 0 0 10px var(--slide),0 0 0 11px var(--rule)}
+.heroplate figcaption{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:18px}
+.isec{padding:56px 0 8px;border-top:1px solid var(--rule);margin-top:40px;scroll-margin-top:70px}
+.isec:first-of-type{border-top:0}
+.sechead{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:baseline;margin:0 0 18px}
+.secno{font:500 12px/1 var(--mono);color:var(--eosin);letter-spacing:.06em;text-transform:uppercase}
+.sechead h2{font:700 clamp(26px,3.2vw,40px)/1.05 var(--display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.prose{margin-left:114px}
+.prose p{font-size:17.5px;line-height:1.65;max-width:66ch;margin:0 0 16px}
+cite{font-style:italic}
+.now{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink);margin:22px 0 0}
+.now a{display:flex;flex-direction:column;gap:6px;padding:16px 16px 18px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0;background:transparent}
+.now a:nth-child(4n){border-right:0}
+.now a:hover{background:var(--slide)}
+.now a:hover b{color:var(--eosin)}
+.now .yr{font:500 11.5px/1 var(--mono);color:var(--hema)}
+.now b{font:700 19px/1.15 var(--display);letter-spacing:-.005em}
+.now span{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.now small{margin-top:auto;padding-top:8px;font:400 11.5px/1.35 var(--mono);color:var(--muted)}
+.needs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);margin:26px 0 6px}
+.needs div{padding:14px 18px 6px 0;min-width:0}
+.needs div+div{padding-left:18px;border-left:1px solid var(--rule)}
+.needs b{font:700 16px/1.2 var(--display);color:var(--hema)}
+.needs p{font-size:15px;line-height:1.5;margin:6px 0 10px}
+.timeline{list-style:none;margin:26px 0 0;padding:0 0 12px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);overflow-x:auto;border-top:2px solid var(--ink)}
+.timeline li{position:relative;padding:16px 16px 0 0;min-width:0}
+.timeline li::before{content:"";position:absolute;top:-7px;left:0;width:10px;height:10px;border-radius:50%;background:var(--glass);border:2px solid var(--ink)}
+.timeline li.k::before{background:var(--eosin);border-color:var(--eosin)}
+.timeline li.n::before{background:var(--hema);border-color:var(--hema)}
+.timeline b{display:block;font:700 18px/1 var(--display);margin-bottom:6px}
+.timeline span{display:block;font-size:14px;line-height:1.4;color:var(--muted)}
+.timeline em{color:var(--ink)}
+.legend2{display:flex;gap:18px;font:400 12px/1.3 var(--mono);color:var(--muted);margin:10px 0 0}
+.legend2 i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+/* plates */
+.lab{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0;background:var(--slide);border:1px solid var(--rule);margin:26px 0 10px;box-shadow:0 1px 0 var(--rule),0 18px 40px -30px rgba(23,25,31,.35)}
+.stage{position:relative;min-width:0;border-right:1px solid var(--rule)}
+.stage canvas{display:block;width:100%;height:auto;touch-action:none}
+.stage .hint{position:absolute;right:12px;bottom:10px;font:400 11.5px/1.3 var(--mono);color:var(--muted);pointer-events:none}
+.stage .tagl{position:absolute;left:12px;top:10px;font:500 11.5px/1.3 var(--mono);color:var(--hema);letter-spacing:.06em;text-transform:uppercase;pointer-events:none;background:color-mix(in srgb,var(--slide) 85%,transparent);padding:2px 4px}
+.side{padding:18px 18px 20px;min-width:0}
+.side h3{font:700 19px/1.15 var(--display);margin:0 0 10px}
+.side p{font-size:15px;line-height:1.5;margin:0 0 10px}
+.side .note{color:var(--muted);font-size:14px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.btn{font:500 12px/1 var(--mono);color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:999px;padding:8px 13px;cursor:pointer}
+.btn:hover{background:var(--glass)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--slide)}
+.btn:focus-visible,.seg button:focus-visible,.claims button:focus-visible{outline:2px solid var(--eosin);outline-offset:2px}
+.seg{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.seg button{flex:1 1 auto;font:500 11.5px/1.15 var(--mono);color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:7px 9px;cursor:pointer}
+.seg button:hover{color:var(--ink);border-color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--hema);border-color:var(--hema);color:#fff}
+.ctrl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin:10px 0 4px;align-items:center}
+.ctrl label{font:400 12px/1.3 var(--mono);color:var(--muted)}
+.ctrl output{font:500 12.5px/1 var(--mono);color:var(--eosin);font-variant-numeric:tabular-nums}
+.ctrl input{grid-column:1/-1;width:100%;accent-color:var(--eosin)}
+.readout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink);margin:12px 0}
+.readout div{padding:8px 0 8px;border-bottom:1px solid var(--rule);min-width:0}
+.readout div:nth-child(2n){padding-left:12px;border-left:1px solid var(--rule)}
+.readout dt{font:400 11px/1.3 var(--mono);color:var(--muted)}
+.readout dd{margin:3px 0 0;font:500 17px/1.2 var(--mono);font-variant-numeric:tabular-nums}
+.plot{width:100%;height:auto;display:block;margin:6px 0 2px;background:var(--glass);border-radius:4px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font:400 11.5px/1.3 var(--mono);color:var(--muted);margin:6px 0}
+.legend i{display:inline-block;width:14px;height:4px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.cap{font-size:14.5px;color:var(--muted);max-width:90ch;margin:10px 0 0 114px}
+.claims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);margin:26px 0 0}
+.claims button{background:transparent;border:0;border-right:1px solid var(--rule);color:var(--ink);text-align:left;padding:16px 18px 16px 0;cursor:pointer;font:inherit;min-width:0}
+.claims button+button{padding-left:18px}
+.claims button:last-child{border-right:0}
+.claims button:hover b{color:var(--eosin)}
+.claims button[aria-pressed="true"]{box-shadow:inset 0 3px 0 var(--eosin)}
+.claims .ix{font:500 11.5px/1 var(--mono);color:var(--eosin)}
+.claims b{display:block;font:700 20px/1.15 var(--display);margin:8px 0}
+.claims span{display:block;font-size:15px;line-height:1.45;color:var(--muted)}
+.matrix{width:100%;border-collapse:collapse;margin:0;font-size:15px;background:var(--slide);border:1px solid var(--rule)}
+.matrix th,.matrix td{text-align:left;padding:10px 14px;border-top:1px solid var(--rule);vertical-align:top}
+.matrix thead th{font:400 11.5px/1.4 var(--mono);color:var(--muted);border-top:0}
+.matrix tbody th{font:700 16px/1.3 var(--display);color:var(--hema);width:22%}
+.matrix td .y{color:var(--chloro)} .matrix td .p{color:var(--eosin)} .matrix td .n{color:var(--muted)}
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);margin:24px 0 0}
+.cols3 div{padding:16px 18px 8px 0;min-width:0}
+.cols3 div+div{padding-left:18px;border-left:1px solid var(--rule)}
+.cols3 .yr{font:500 11.5px/1 var(--mono);color:var(--eosin)}
+.cols3 b{display:block;font:700 18px/1.2 var(--display);margin:8px 0;color:var(--hema)}
+.cols3 p{font-size:15.5px;line-height:1.5;margin:0 0 10px}
+.closing{font:600 clamp(22px,2.4vw,30px)/1.3 var(--display);letter-spacing:-.01em;max-width:42ch;margin:40px 0 0 114px;color:var(--ink);text-wrap:balance}
+.ifoot{margin-top:64px;padding-top:16px;border-top:2px solid var(--ink);font-size:14.5px;color:var(--muted)}
+.ifoot ol{padding-left:18px;margin:10px 0 18px;columns:2;column-gap:36px}
+.ifoot li{margin:0 0 6px;break-inside:avoid}
+@media (max-width:1000px){.hero{grid-template-columns:minmax(0,1fr)}.heroplate{max-width:420px}.now{grid-template-columns:repeat(2,minmax(0,1fr))}.now a:nth-child(4n){border-right:1px solid var(--rule)}.now a:nth-child(2n){border-right:0}.lab{grid-template-columns:minmax(0,1fr)}.stage{border-right:0;border-bottom:1px solid var(--rule)}.needs{grid-template-columns:repeat(2,minmax(0,1fr))}.needs div:nth-child(3){padding-left:0;border-left:0}.prose,.cap,.closing{margin-left:0}.sechead{grid-template-columns:minmax(0,1fr);gap:6px}}
+@media (max-width:640px){.wrap{padding:0 16px 40px}.now,.claims,.cols3,.needs{grid-template-columns:minmax(0,1fr)}.now a{border-right:0!important}.claims button,.cols3 div,.needs div{border-left:0!important;border-right:0;padding-left:0!important;border-bottom:1px solid var(--rule)}.inav{display:none}.ifoot ol{columns:1}.hero{padding:34px 0 24px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="ibar">
+  <a class="wordmark" href="#top">Conditions of Existence<small>A Worldmaking Project atlas</small></a>
+  <nav class="inav" aria-label="Sections">
+    <a href="#now">Now</a><a href="#conditions">Conditions</a><a href="#timeline">Timeline</a><a href="#life">Life</a><a href="#boids">Boids</a><a href="#creatures">Creatures</a><a href="#tierra">Tierra</a><a href="#daisyworld">Daisyworld</a><a href="#claims">Claims</a><a href="#responsibility">Responsibility</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div>
+    <p class="eyebrow">A Worldmaking Project atlas · artificial life, 1948 to now</p>
+    <h1 class="ititle">Conditions of <em>Existence</em></h1>
+    <p class="ilede" style="margin-top:26px">Artificial life changed worldmaking from the composition of a whole into the establishment of conditions through which a whole can develop and come to exceed its maker's anticipation. Five of the field's worlds run live on these plates, each with its conditions exposed as controls, so that a reader can change what their makers chose and watch the consequences.</p>
+  </div>
+  <figure class="heroplate">
+    <canvas id="dishCanvas" width="640" height="640" aria-label="Particle Life dish"></canvas>
+    <figcaption>Live: four species of particle under a randomly drawn, asymmetric table of attraction and repulsion, after Jeffrey Ventrella's Clusters. Click the dish to draw a new table.</figcaption>
+  </figure>
+</section>
+
+<section class="isec" id="now">
+  <div class="sechead"><span class="secno">Now</span><h2>A second life for artificial life</h2></div>
+  <div class="prose"><p>Thirty-five years after Tierra, the field is carried by graphics processors, machine learning and a large public of amateurs. Its current worlds run millions of particles, grow and regenerate bodies from single cells, evolve neural brains in games sold on Steam, and in one case left the computer for a dish of frog cells.</p></div>
+  <div class="now">
+    <a href="https://github.com/chrxh/alien"><span class="yr">2008 to now</span><b>ALIEN</b><span>Christian Heinemann's GPU simulator bonds millions of particles into soft bodies whose cells each run a small neural network; its ecosystems evolve under limited energy, predation and competition for space.</span><small>First prize, ALIFE 2024 Virtual Creatures Competition</small></a>
+    <a href="https://arxiv.org/abs/2406.19108"><span class="yr">2024</span><b>Computational Life</b><span>Agüera y Arcas and colleagues at Google let random programs interact in a soup with no fitness function, and self-replicators arose: Tierra's founding event without a hand-written ancestor.</span><small>arXiv 2406.19108</small></a>
+    <a href="https://distill.pub/2020/growing-ca/"><span class="yr">2020</span><b>Growing Neural CA</b><span>Mordvintsev, Randazzo, Niklasson and Levin trained a cellular automaton's rule as a neural network; a single seed grows into a lizard and regrows it when erased.</span><small>Distill</small></a>
+    <a href="https://sites.google.com/view/flowlenia/"><span class="yr">2019 · 2023</span><b>Lenia and Flow-Lenia</b><span>Bert Wang-Chak Chan's continuous Game of Life produces gliding creatures; Flow-Lenia conserves mass and lets species with different rules share one world.</span><small>Best paper, ALIFE 2023</small></a>
+    <a href="https://ventrella.com/Clusters"><span class="yr">2005 · 2022</span><b>Clusters and Particle Life</b><span>Jeffrey Ventrella's particles attract and repel through a small, possibly asymmetric table of forces, and membranes, cells and swarms form from that table alone.</span><small>Running in the dish above</small></a>
+    <a href="https://thebibites-website.pages.dev/"><span class="yr">2017 to now</span><b>The Bibites</b><span>Léo Caussan's creatures start with empty neural networks and acquire behavior through mutation and selection, in a simulation released on Steam in 2025.</span><small>Game</small></a>
+    <a href="https://doi.org/10.1073/pnas.2112672118"><span class="yr">2020 · 2021</span><b>Xenobots</b><span>Kriegman, Blackiston, Levin and Bongard designed frog-cell organisms with an evolutionary algorithm; C-shaped ones sweep loose cells into copies of themselves.</span><small>PNAS 118:49</small></a>
+    <a href="https://asal.sakana.ai/"><span class="yr">2024</span><b>ASAL</b><span>Sakana AI, MIT and others use vision-language models to search Boids, Lenia and Life-like rules for what looks alive, returning selection to the authority of pictures.</span><small>arXiv 2412.17799</small></a>
+  </div>
+</section>
+
+<section class="isec" id="conditions">
+  <div class="sechead"><span class="secno">§ 1</span><h2>From composition to conditions</h2></div>
+  <div class="prose">
+    <p>For most of the history of design, makers related their work to the larger order through a picture: the ideal city, the cosmological diagram, the master plan. Martin Heidegger argued in 1938 that modernity had grasped the world itself as a picture, and Fredric Jameson argued half a century later that the global system had grown too extensive for anyone to picture at all, proposing <em>cognitive mapping</em> as a way of orienting oneself within a totality that resists representation.</p>
+    <p>Researchers in artificial life approached the same problem from outside design. Since a workshop at Los Alamos in 1987 they have built small worlds in computers, run them, and watched what they do. A world, in their practice, is an ordering in which relationships act on what they relate, so that its makers write the conditions and learn the consequences by running it. Charles Darwin called the second great law of organic form the <em>Conditions of Existence</em>, and the phrase serves as a test: a constructed world qualifies when things in it can persist or fail and when one entity's success changes another's prospects.</p>
+  </div>
+  <div class="needs">
+    <div><b>Resources</b><p>What exists to compete for and what it costs: memory and processor time in Tierra, sunlight and bare ground on Daisyworld.</p></div>
+    <div><b>Physics</b><p>Which rules apply and how accurately they are computed. Sims's creatures found the errors in his integrator and moved by means of them.</p></div>
+    <div><b>Perception</b><p>What each entity can register. A boid sees flockmates within a radius; a Tierran program sees only the memory it can address.</p></div>
+    <div><b>Reward</b><p>What counts as success. Avida's complex functions evolved only when their simpler precursors were rewarded as well.</p></div>
+  </div>
+  <p class="cap">The four kinds of decision a maker of an artificial world still owns once the world runs on its own. Each lab below exposes some of them as controls.</p>
+</section>
+
+<section class="isec" id="timeline">
+  <div class="sechead"><span class="secno">§ 2</span><h2>A short history of built worlds</h2></div>
+  <ol class="timeline">
+    <li><b>1940</b><span>Borges publishes <em>Tlön, Uqbar, Orbis Tertius</em>: a world made by description.</span></li>
+    <li><b>1948–49</b><span>Von Neumann designs a self-reproducing machine on paper; Grey Walter builds the tortoises Elmer and Elsie.</span></li>
+    <li><b>1969</b><span>Simon's ant on the beach; Pask asks architects to catalyse buildings and cities.</span></li>
+    <li class="k"><b>1970</b><span>Gardner publishes Conway's Game of Life; Gosper's glider gun follows in November.</span></li>
+    <li class="k"><b>1983</b><span>Watson and Lovelock publish the parable of Daisyworld.</span></li>
+    <li><b>1984</b><span>Langton's self-reproducing loop: eighty-six cells, eight states.</span></li>
+    <li class="k"><b>1987</b><span>Reynolds presents Boids at SIGGRAPH; Langton convenes the Los Alamos workshop.</span></li>
+    <li class="k"><b>1990</b><span>Ray's Tierra produces parasites on its first run.</span></li>
+    <li class="k"><b>1994</b><span>Sims's evolved virtual creatures, run on a Connection Machine CM-5.</span></li>
+    <li><b>1995</b><span>Ray proposes a network-wide reserve for digital organisms.</span></li>
+    <li><b>1997</b><span>Sims's <em>Galápagos</em> lets visitors act as the selective environment.</span></li>
+    <li><b>2003</b><span>Avida's complex function EQU evolves through rewarded stepping-stones.</span></li>
+    <li><b>2015</b><span><em>Dwarf Fortress</em> cats die of alcohol poisoning from grooming.</span></li>
+    <li><b>2017</b><span>Huyghe's <em>After ALife Ahead</em> opens in a Münster ice rink.</span></li>
+    <li class="n"><b>2019</b><span>Chan publishes Lenia, a continuous Game of Life.</span></li>
+    <li class="n"><b>2020</b><span>Growing Neural Cellular Automata; the first xenobots.</span></li>
+    <li class="n"><b>2021</b><span>Xenobots replicate kinematically.</span></li>
+    <li class="n"><b>2024</b><span>Self-replicators arise in Google's program soup; ALIEN wins at ALIFE; ASAL searches by appearance.</span></li>
+  </ol>
+  <p class="legend2"><span><i style="background:var(--eosin)"></i>Worlds on these plates</span><span><i style="background:var(--hema)"></i>Contemporary work</span></p>
+</section>
+
+<section class="isec" id="life">
+  <div class="sechead"><span class="secno">Plate 1</span><h2>The Game of Life</h2></div>
+  <div class="prose"><p>John Horton Conway's rules take three lines: a live cell with two or three live neighbors survives, a dead cell with exactly three comes alive, and every other cell dies or stays dead. In October 1970 Martin Gardner introduced the game in <cite>Scientific American</cite> along with the glider, five cells that reconstitute themselves one cell diagonally every four generations. Conway offered fifty dollars for a pattern that grows without limit, a question he could not settle although he had written every rule, and a group at MIT led by Bill Gosper won it in November with the glider gun.</p></div>
+  <div class="lab">
+    <div class="stage"><canvas id="lifeCanvas" width="960" height="560" aria-label="Game of Life grid"></canvas><span class="tagl" id="lifeTag">Gosper glider gun</span><span class="hint">Click to stamp the brush</span></div>
+    <div class="side">
+      <h3>Rules fixed, patterns open</h3>
+      <div class="seg" id="lifePresets" role="group" aria-label="Starting pattern">
+        <button data-p="gun" aria-pressed="true">Gun</button><button data-p="glider">Glider</button><button data-p="r">R-pento</button><button data-p="soup">Soup</button><button data-p="clear">Clear</button>
+      </div>
+      <div class="btnrow"><button class="btn" id="lifePlay" aria-pressed="true">Pause</button><button class="btn" id="lifeStep">Step</button></div>
+      <p class="note" style="margin:8px 0 2px">Brush for clicking the grid</p>
+      <div class="seg" id="lifeBrush" role="group" aria-label="Brush"><button data-b="glider" aria-pressed="true">Glider</button><button data-b="r">R-pentomino</button><button data-b="cell">Cells</button></div>
+      <div class="ctrl"><label for="lifeSpeed">Generations per second</label><output id="lifeSpeedO">20</output><input id="lifeSpeed" type="range" min="2" max="60" value="20"></div>
+      <dl class="readout"><div><dt>Generation</dt><dd id="lifeGen">0</dd></div><div><dt>Live cells</dt><dd id="lifePop">0</dd></div></dl>
+      <p class="note">A single drawn cell dies in the next generation, since it has fewer than two neighbors; draw cells while paused, or stamp a glider and watch it travel. The R-pentomino settles only after 1,103 generations on an unbounded grid; the edges here absorb whatever reaches them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="isec" id="boids">
+  <div class="sechead"><span class="secno">Plate 2</span><h2>Boids</h2></div>
+  <div class="prose"><p>Craig Reynolds wrote Boids in 1986 at the Symbolics Graphics Division in Los Angeles and presented it at SIGGRAPH in 1987. Each boid perceives only the flockmates near it and follows three behaviors, which he called collision avoidance, velocity matching and flock centering. The program describes birds and their neighbors, and a flock appears only when many of them run together, giving what Reynolds described in natural flocks as a strong impression of centralized control. Every agent in an artificial world lives in what Jakob von Uexküll called an <em>Umwelt</em>, a world made of the few signs it can register, and here the maker sets its radius.</p></div>
+  <div class="lab">
+    <div class="stage"><canvas id="boidsCanvas" width="960" height="560" aria-label="Boids flock"></canvas><span class="tagl">Move the pointer over the flock to place an obstacle</span></div>
+    <div class="side">
+      <h3>Three behaviors, one radius</h3>
+      <div class="ctrl"><label for="bSep">Collision avoidance</label><output id="bSepO">1.5</output><input id="bSep" type="range" min="0" max="4" step=".1" value="1.5"></div>
+      <div class="ctrl"><label for="bAli">Velocity matching</label><output id="bAliO">1.0</output><input id="bAli" type="range" min="0" max="4" step=".1" value="1"></div>
+      <div class="ctrl"><label for="bCoh">Flock centering</label><output id="bCohO">0.8</output><input id="bCoh" type="range" min="0" max="4" step=".1" value=".8"></div>
+      <div class="ctrl"><label for="bRad">Perception radius</label><output id="bRadO">60 px</output><input id="bRad" type="range" min="10" max="160" value="60"></div>
+      <div class="btnrow"><button class="btn" id="bUmwelt" aria-pressed="true">Show one Umwelt</button><button class="btn" id="bReset">Scatter</button></div>
+      <dl class="readout"><div><dt>Polarization</dt><dd id="bPol">0.00</dd></div><div><dt>Neighbors seen</dt><dd id="bNei">0</dd></div></dl>
+      <p class="note">Polarization runs from 0, when headings are random, to 1, when every boid flies the same way. Set velocity matching to zero and the flock dissolves into milling clusters; shrink the radius and it breaks into many small flocks that never learn of one another.</p>
+    </div>
+  </div>
+</section>
+
+<section class="isec" id="creatures">
+  <div class="sechead"><span class="secno">Plate 3</span><h2>Evolved creatures and the fitness function</h2></div>
+  <div class="prose"><p>In 1994 Karl Sims evolved virtual creatures whose bodies and nervous systems varied together, scoring populations of a few hundred on swimming, walking, jumping and following a light. Early runs exploited flaws in his simulated physics: creatures propelled themselves by striking their own bodies with a paddle, and others harvested errors in the numerical integrator. Sims told the science writers Peter Coveney and Roger Highfield that they had done what he asked, though not in the way he wanted. A collection of such anecdotes published in 2018 by Joel Lehman and over fifty colleagues includes an experiment that scored jumping by the peak height of a creature's center of mass, and evolution answered with tall creatures that never jumped.</p>
+  <p>This lab evolves simple jointed bodies, built from nodes, rigid struts and oscillating muscles, against a fitness function you choose. The physics is a small spring model written for this page, far simpler than Sims's, and the loophole it exposes is the same one.</p></div>
+  <div class="lab">
+    <div class="stage"><canvas id="evoCanvas" width="960" height="560" aria-label="Best evolved creature"></canvas><span class="tagl" id="evoTag">Best of generation 0</span><span class="hint">Replaying the current champion</span></div>
+    <div class="side">
+      <h3>Write the criterion</h3>
+      <div class="seg" id="evoFit" role="group" aria-label="Fitness function">
+        <button data-f="dist" aria-pressed="true">Distance</button><button data-f="peak">Peak height</button><button data-f="gain">Height gained</button>
+      </div>
+      <p id="evoFitText">Distance traveled by the center of mass in six seconds.</p>
+      <div class="btnrow"><button class="btn" id="evoRun" aria-pressed="true">Pause</button><button class="btn" id="evoReset">New population</button></div>
+      <dl class="readout"><div><dt>Generation</dt><dd id="evoGen">0</dd></div><div><dt>Best fitness</dt><dd id="evoBest">0</dd></div><div><dt>Champion height</dt><dd id="evoH">0</dd></div><div><dt>Moving parts</dt><dd id="evoM">0</dd></div></dl>
+      <svg class="plot" id="evoPlot" viewBox="0 0 300 90" aria-label="Fitness over generations"></svg>
+      <p class="note">Choose <b>Peak height</b> and the population grows into towers that score by standing still. <b>Height gained</b> measures the rise above a creature's resting height, which closes that loophole and leaves others for evolution to find.</p>
+    </div>
+  </div>
+</section>
+
+<section class="isec" id="tierra">
+  <div class="sechead"><span class="secno">Plate 4</span><h2>Tierra</h2></div>
+  <div class="prose"><p>Thomas Ray, a tropical ecologist at the University of Delaware, built Tierra in 1989 and 1990: a virtual computer whose memory, which he called the soup, served as territory and whose processor time served as energy. He wrote one creature, an ancestor of eighty instructions that copies itself, added mutation and a reaper that removes the oldest and most error-prone programs when memory fills, and on the first run a program of forty-five instructions appeared that borrowed the copying code of its neighbors. Ray had designed no parasite. Hosts that resisted parasites followed, then hyper-parasites, cooperators and cheaters.</p>
+  <p>Tierra is usually seen as a memory map of colored bars. Norbert Wiener distinguished pictorial images from operative ones, copies whose likeness lies in what they do, and Tierra consists entirely of the second kind. The toggle below draws the same running world two ways, and the ecology is identical in both.</p></div>
+  <div class="lab">
+    <div class="stage"><canvas id="soupCanvas" width="960" height="560" aria-label="Soup memory map"></canvas><span class="tagl" id="soupTag">Memory map · 6,000 instructions</span></div>
+    <div class="side">
+      <h3>One soup, two pictures</h3>
+      <div class="seg" id="soupView" role="group" aria-label="Rendering"><button data-v="map" aria-pressed="true">Memory map</button><button data-v="bodies">As bodies</button></div>
+      <div class="ctrl"><label for="soupMut">Mutation rate</label><output id="soupMutO">1.0×</output><input id="soupMut" type="range" min="0" max="3" step=".1" value="1"></div>
+      <div class="btnrow"><button class="btn" id="soupRun" aria-pressed="true">Pause</button><button class="btn" id="soupReset">Inoculate ancestor</button></div>
+      <dl class="readout"><div><dt>Hosts</dt><dd id="soupH">0</dd></div><div><dt>Parasites</dt><dd id="soupP">0</dd></div><div><dt>Shortest host</dt><dd id="soupMin">80</dd></div><div><dt>Births</dt><dd id="soupB">0</dd></div></dl>
+      <svg class="plot" id="soupPlot" viewBox="0 0 300 90" aria-label="Hosts and parasites over time"></svg>
+      <div class="legend"><span><i style="background:linear-gradient(90deg,#3D3B8E,#2F8FA8)"></i>Hosts, 80 to 50 long</span><span><i style="background:var(--eosin)"></i>Parasites</span><span><i style="background:var(--chloro)"></i>Immune hosts</span></div>
+      <p class="note">A schematic model after Tierra, written for this page: copying time grows with length, parasites copy only with a host nearby, and hosts can mutate into immunity. It keeps Ray's conditions and simplifies his instruction set away; hosts here cannot shrink below fifty instructions, where Ray's reached twenty-two, so that parasites keep their advantage long enough to cycle.</p>
+    </div>
+  </div>
+</section>
+
+<section class="isec" id="daisyworld">
+  <div class="sechead"><span class="secno">Plate 5</span><h2>Daisyworld</h2></div>
+  <div class="prose"><p>In 1983 Andrew Watson and James Lovelock published in <cite>Tellus</cite> a model they called a parable: a cloudless planet under a slowly brightening sun, inhabited by dark daisies that absorb light and warm their surroundings and light daisies that reflect it and cool theirs. Each kind grows best within a band of temperature, and as the sun brightens the balance between them shifts so that the planet's temperature holds nearly steady across a wide range of solar output, with no daisy pursuing that result. Watson and Lovelock presented it as a fictional world built to display one property they believed the Earth possessed, and it became one of the most discussed arguments in the debate over the Gaia hypothesis.</p></div>
+  <div class="lab">
+    <div class="stage"><canvas id="daisyCanvas" width="960" height="560" aria-label="Daisyworld planet and temperature plot"></canvas><span class="tagl">Steady state at the current luminosity</span></div>
+    <div class="side">
+      <h3>Brighten the sun</h3>
+      <div class="ctrl"><label for="dL">Solar luminosity</label><output id="dLO">1.00</output><input id="dL" type="range" min="0.5" max="1.7" step="0.005" value="1"></div>
+      <div class="btnrow"><button class="btn" id="dSweep">Sweep the sun</button><button class="btn" id="dWhite" aria-pressed="true">White daisies</button><button class="btn" id="dBlack" aria-pressed="true">Black daisies</button></div>
+      <dl class="readout"><div><dt>Planet temperature</dt><dd id="dT">0</dd></div><div><dt>Lifeless planet</dt><dd id="dT0">0</dd></div><div><dt>White cover</dt><dd id="dW">0</dd></div><div><dt>Black cover</dt><dd id="dB">0</dd></div></dl>
+      <p class="note">Watson and Lovelock's 1983 equations: albedos of 0.25, 0.5 and 0.75 for black daisies, bare ground and white daisies, growth peaking at 22.5 °C, a death rate of 0.3. Remove one species and the regulated range narrows; remove both and temperature follows the sun.</p>
+    </div>
+  </div>
+</section>
+
+<section class="isec" id="claims">
+  <div class="sechead"><span class="secno">§ 3</span><h2>Three claims about life</h2></div>
+  <div class="prose"><p>Three propositions about artificial life are easily run together. Christopher Langton made the strongest one explicit in 1989, arguing that the artificial in artificial life applies to the parts and leaves the emergent processes real. Thomas Ray held that Tierra's organisms were alive. W. Grey Walter titled his 1950 article on the tortoises "An Imitation of Life," and the biophysicist Howard Pattee distinguished a simulation, which stands for something, from a realization, which implements its functions. A world, in the sense of a set of consequential conditions of existence, needs only the second.</p></div>
+  <div class="claims" id="claimBtns">
+    <button data-c="0"><span class="ix">Claim 1</span><b>Appears lifelike</b><span>An observer reads life into the behavior.</span></button>
+    <button data-c="1" aria-pressed="true"><span class="ix">Claim 2</span><b>Reproduces features of life</b><span>Self-replication, heredity, variation, selection, ecology.</span></button>
+    <button data-c="2"><span class="ix">Claim 3</span><b>Is alive</b><span>Life realized in another medium.</span></button>
+  </div>
+  <table class="matrix" id="claimTable">
+    <thead><tr><th>World</th><th>How it meets the selected claim</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="isec" id="responsibility">
+  <div class="sechead"><span class="secno">§ 4</span><h2>Responsibility for conditions</h2></div>
+  <div class="prose"><p>If design establishes conditions through which other things act and develop, its responsibility extends beyond the appearance of the result, to what those conditions favor and exclude and to the maintenance of a world after its inhabitants have come to depend on it. Norbert Wiener ended <cite>God &amp; Golem, Inc.</cite> (1964) by carrying the ethical burden of learning and self-reproducing machines out of theology and into politics, where it falls on the people who build them. Three texts divide that burden among creation, maintenance and tenure.</p></div>
+  <div class="cols3">
+    <div><span class="yr">1971</span><b>Lem, "Non Serviam"</b><p>A review of an imaginary book on personetics, the creation of intelligent beings inside computers. The personoids debate whether their creator exists, and their creator knows he will eventually have to switch their world off.</p></div>
+    <div><span class="yr">1995</span><b>Ray's digital reserve</b><p>Ray proposed moving Tierra onto volunteered machines across the internet and wrote that, if complexity began to evolve, the reserve should become a permanent part of the network, as a forest reserve converted to pasture would count as a failure.</p></div>
+    <div><span class="yr">2010</span><b>Chiang, "The Lifecycle of Software Objects"</b><p>Digients raised for years on a commercial platform are left on a private server when the platform is absorbed into a newer one, and the burden of their world falls to the few people who came to care for them.</p></div>
+  </div>
+  <p class="closing">To make a world is to give relationships enough consistency to become consequential, while accepting that their consequences may exceed the picture with which the making began.</p>
+</section>
+
+<footer class="ifoot">
+  <p class="eyebrow">Sources</p>
+  <ol>
+    <li>Christopher G. Langton, ed., <cite>Artificial Life</cite> (Addison-Wesley, 1989), including Howard Pattee, "Simulations, Realizations, and Theories of Life."</li>
+    <li>John von Neumann, <cite>Theory of Self-Reproducing Automata</cite>, ed. Arthur W. Burks (University of Illinois Press, 1966).</li>
+    <li>Martin Gardner, "The fantastic combinations of John Conway's new solitaire game 'life'," <cite>Scientific American</cite>, October 1970.</li>
+    <li>Craig W. Reynolds, "Flocks, Herds, and Schools: A Distributed Behavioral Model," <cite>Computer Graphics</cite> 21:4 (1987).</li>
+    <li>Karl Sims, "Evolving Virtual Creatures," SIGGRAPH '94 Proceedings (1994); <a href="https://karlsims.com/evolved-virtual-creatures.html">karlsims.com</a>.</li>
+    <li>Joel Lehman et al., "The Surprising Creativity of Digital Evolution," <cite>Artificial Life</cite> 26:2 (2020).</li>
+    <li>Thomas S. Ray, "An Approach to the Synthesis of Life," in <cite>Artificial Life II</cite> (1991); <a href="https://www.tomray.me/pubs/tierra/node10.html">tomray.me</a>.</li>
+    <li>Andrew J. Watson and James E. Lovelock, "Biological Homeostasis of the Global Environment: The Parable of Daisyworld," <cite>Tellus</cite> 35B (1983).</li>
+    <li>Richard E. Lenski et al., "The Evolutionary Origin of Complex Features," <cite>Nature</cite> 423 (2003).</li>
+    <li>Herbert A. Simon, <cite>The Sciences of the Artificial</cite> (MIT Press, 1969).</li>
+    <li>Norbert Wiener, <cite>God &amp; Golem, Inc.</cite> (MIT Press, 1964).</li>
+    <li>Stefan Helmreich, <cite>Silicon Second Nature</cite> (University of California Press, 1998).</li>
+  </ol>
+  <p>Conditions of Existence · A Worldmaking Project atlas by Damjan Jovanovic. The models on this page are written for it and simplify their sources; each lab says how.</p>
+</footer>
+</main>
+</div>
+<script src="app.js?v=1"></script>
+</body>
+</html>
